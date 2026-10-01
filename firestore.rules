@@ -1,0 +1,30 @@
+rules_version = '2';
+
+// Security rules for the Personal Expense Tracker.
+// This app has no login, so anyone with the link can read/add/edit/delete.
+// That is fine for a class assignment; the rules still validate every write.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // One place that defines what a valid expense looks like.
+    function isValidExpense(d) {
+      return d.keys().hasOnly(['title', 'amount', 'category', 'date', 'createdAt'])
+          && d.title is string
+          && d.title.size() > 0
+          && d.title.size() <= 80
+          && d.amount is number
+          && d.amount > 0
+          && d.category in ['Food', 'Travel', 'Shopping', 'Bills', 'Other']
+          && d.date is string
+          && d.date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+    }
+
+    match /expenses/{expenseId} {
+      allow read: if true;
+      allow create: if isValidExpense(request.resource.data);
+      allow update: if isValidExpense(request.resource.data)
+                    && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if true;
+    }
+  }
+}
