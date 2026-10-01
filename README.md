@@ -2,8 +2,9 @@
 
 A simple web app to record and manage daily expenses. Every expense is stored in **Firebase Firestore**, shown in a table below the form, and can be deleted with one click. The app also shows the **total number of expenses** and the **total amount spent**.
 
-**Live demo:** _add your Vercel URL here_
-**Repository:** _add your GitHub URL here_
+**Live demo on Vercel:** https://expense-tracker-seven-green-70.vercel.app/
+**Live demo on Firebase:** https://personal-expense-tracker-6d809.web.app/
+**Repository:** https://github.com/sumairanooruddin786-droid/expense-tracker/
 
 ![Desktop preview](docs/preview-desktop.png)
 
