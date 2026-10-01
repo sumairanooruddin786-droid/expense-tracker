@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "*.log",
+      "README.md",
+      "vercel.json",
+      "firestore.rules",
+      "docs/**"
+    ]
+  }
+}
